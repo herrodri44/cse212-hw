@@ -15,6 +15,7 @@ public static class Sorting {
         Console.Out.WriteLine("int[]{{{0}}}", string.Join(", ", numbers)); //int[]{1, 2, 3, 4, 6, 8, 9}
     }
 
+    // Big Oh notation => O(n^2)
     private static void SortArray(int[] data) {
         for (var sortPos = data.Length - 1; sortPos >= 0; sortPos--) {
             for (var swapPos = 0; swapPos < sortPos; ++swapPos) {

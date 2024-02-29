@@ -38,8 +38,16 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
-
-        return new double[0]; // replace this return statement with your own
+        // Create an array of doubles of lenght provided in params
+        double[] array = new double[length];
+        // Performe a for loop, that iterates 'lenth' amount of times
+        for (int i = 0; i < length; i++)
+        {
+            // in the loop add to the list the muliple of number * index
+            array[i] = number * (i + 1);
+        }
+        // return the list
+        return array;
     }
     
     /// <summary>
@@ -56,6 +64,14 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
-
+        
+        // Calculate the amount of elements we will shift
+        int shiftedAmount = data.Count - amount;
+        // Get the range of elements to shift
+        List<int> listToShift = data.GetRange(0, shiftedAmount);
+        // Remove the elements from the list
+        data.RemoveRange(0, shiftedAmount);
+        // add the listToShift to the end of the list
+        data.AddRange(listToShift);
     }
 }
