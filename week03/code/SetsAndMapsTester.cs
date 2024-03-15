@@ -111,6 +111,16 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+       var uniquePairs = new HashSet<string>(words);
+       foreach (var item in uniquePairs)
+       {
+            string reversed = $"{item[1]}{item[0]}";
+            if (uniquePairs.Contains(reversed) && !item.Equals(reversed))
+            {
+                uniquePairs.Remove(reversed);
+                Console.WriteLine($"{item} & {reversed}");
+            }
+       }
     }
 
     /// <summary>
@@ -132,8 +142,16 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            // 49,Private,160187,9th,5
+            string degreeName = fields[3]; 
+            if (!degrees.ContainsKey(degreeName))
+            {
+                degrees[degreeName] = 1;
+            } else 
+            {
+                degrees[degreeName] += 1;
+            }
         }
-
         return degrees;
     }
 
@@ -158,7 +176,50 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Dictionary<char, int> dictionary1 = new();
+        Dictionary<char, int> dictionary2 = new();
+
+
+        for (int i = 0; i < word1.Length; i++)
+        {
+            if (Char.IsWhiteSpace(word1[i]))
+            {
+                continue;
+            }
+            
+            char key = char.ToLower(word1[i]);
+            if (dictionary1.ContainsKey(key)) 
+            {
+                dictionary1[key] += 1;
+            } else 
+            {
+                dictionary1[key] = 1;
+            }
+        }
+
+        for (int i = 0; i < word2.Length; i++)
+        {
+            if (Char.IsWhiteSpace(word2[i]))
+            {
+                continue;
+            }
+            char key = char.ToLower(word2[i]);
+            if (dictionary2.ContainsKey(key)) 
+            {
+                dictionary2[key] += 1;
+            } else 
+            {
+                dictionary2[key] = 1;
+            }
+        }
+
+        /*
+            Got help from this website to learn how to compare 2 dictionaries using 'SequenceEqual' method
+            https://www.tutorialspoint.com/check-if-two-dictionary-objects-are-equal-in-chash#:~:text=In%20C%23%2C%20you%20can%20check,order%20of%20key%2Dvalue%20pairs.
+        */
+        bool areEqual = dictionary1.OrderBy(kv => kv.Key).SequenceEqual(dictionary2.OrderBy(kv => kv.Key));
+
+        return areEqual;
     }
 
     /// <summary>
