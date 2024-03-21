@@ -10,18 +10,32 @@ public class Program
 
         Console.WriteLine("Hello Sandbox World!");
 
-        List<int> list = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        var set1 = new HashSet<int> { 1, 2, 3, 4, 5 };
+        var set2 = new HashSet<int> { 4, 5, 6, 7, 8 , 9 };
+    
+        var intersection = new List<int>();
+        var union = new List<int>(set1);
 
-        List<int> list2 = list.GetRange(0, 3);
-
-        list.RemoveRange(0, 3);
-
-        list.AddRange(list2);
-
-        Console.WriteLine("----------------");
-        foreach (var item in list)
+        // INTERSECTION
+        foreach (var item in set1)
         {
-            Console.Write($"{item}, ");
+            if(set2.Contains(item))
+            {
+                intersection.Add(item);
+            }
         }
+        // UNION
+        foreach (var item in set2)
+        {
+            if(!set1.Contains(item))
+            {
+                union.Add(item);
+            }
+        }
+
+        Console.WriteLine("-----");
+        intersection.ForEach(i => Console.Write(i));
+        Console.WriteLine("-----");
+        union.ForEach(u => Console.Write(u));
     }
 }
