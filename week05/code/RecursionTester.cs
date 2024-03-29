@@ -147,7 +147,14 @@ public static class RecursionTester {
     /// </summary>
     public static int SumSquaresRecursive(int n) {
         // TODO Start Problem 1
-        return 0;
+        if (n <= 1)
+        {
+            return 1;
+        } else 
+        {
+            return n*n + SumSquaresRecursive(n - 1);
+        }
+
     }
 
     /// <summary>
@@ -171,6 +178,7 @@ public static class RecursionTester {
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
         // TODO Start Problem 2
+
     }
 
     /// <summary>
@@ -249,6 +257,8 @@ public static class RecursionTester {
     /// </summary>
     public static void WildcardBinary(string pattern) {
         // TODO Start Problem 4
+        // "110*0*"
+        
     }
 
     /// <summary>
